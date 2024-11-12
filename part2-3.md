@@ -88,10 +88,8 @@ Semantic Kernel, the kernel will always be available to retrieve the necessary s
 To get started with Semantic Kernel, you can build your first AI agent using Python, .NET, or Java. Here's a quick guide:
 
 1. **Install Necessary Packages**: For most scenarios, you only need the `Microsoft.SemanticKernel` package. You can install it using the command:
-   ```
-   dotnet add package Microsoft.SemanticKernel
-   ```
-
+      dotnet add package Microsoft.SemanticKernel
+   
 2. **Create a Back-and-Forth Conversation with AI**: Set up your environment to enable interaction with an AI agent.
 
 3. **Enable AI to Run Your Code**: Allow the AI agent to execute your code as part of its operations.
