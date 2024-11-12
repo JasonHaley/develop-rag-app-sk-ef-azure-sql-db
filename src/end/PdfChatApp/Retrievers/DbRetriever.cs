@@ -17,9 +17,9 @@ public class DbRetriever(DocDbContext dbContext)
 
         return await dbContext.PageChunks
             .Include(pc => pc.Page).ThenInclude(p => p!.Document)
-            .OrderBy(pc => EF.Functions.VectorDistance("cosine", pc.LocalEmbedding ?? new float[0], vector))
+            .OrderBy(pc => EF.Functions.VectorDistance("cosine", pc.Embedding ?? new float[0], vector))
             .Take(k)
-            .Select(pc => new DocumentInfo(pc!.Page!.Document!.Id, pc.PageId, pc.Id, pc.Page.Document.Name, pc.Page.Document.Path, pc.Text, EF.Functions.VectorDistance("cosine", pc.LocalEmbedding ?? new float[0], vector)))
+            .Select(pc => new DocumentInfo(pc!.Page!.Document!.Id, pc.PageId, pc.Id, pc.Page.Document.Name, pc.Page.Document.Path, pc.Text, EF.Functions.VectorDistance("cosine", pc.Embedding ?? new float[0], vector)))
             .ToListAsync();
     }
 }
