@@ -27,7 +27,7 @@ This lab starts with creating and configuring an Azure SQL database. You then ge
 * Azure Subscription - [you can create a Free account](https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account?icid=azurefreeaccount&azure-portal=true) if you don't have one.
     * Ability to create a new Azure SQL Server and DB
     * Ability to create Azure Open AI resource and deployments
-* VS Code or Visual Studio
+* VS Code (Visual Studio will work but right now the steps are written for VS Code)
 * [Entity Framework Core .NET Core CLI tools](https://learn.microsoft.com/en-us/ef/core/cli/dotnet#installing-the-tools)
 * SQL Server Management Studio
 
