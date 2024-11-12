@@ -21,6 +21,7 @@ This lab starts with creating and configuring an Azure SQL database. You then ge
 * Experience working with the Azure Portal
 * Basic knowledge of creating resources in Azure
 * Experience working with [Entity Framework Core migrations](https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli)
+* Basic knowledge of Semantic Kernel and its concepts
 
 ## What you will need
 

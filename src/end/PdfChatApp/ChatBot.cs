@@ -21,7 +21,7 @@ public class ChatBot(Kernel kernel, IChatCompletionService chatCompletionService
         };
 
         var responseTokens = new StringBuilder();
-        ChatHistory chatHistory = new ChatHistory("You are a chatbot that can answer questions about the internal documentation."); // Be brief with your responses.
+        ChatHistory chatHistory = new ChatHistory("You are a chatbot that can answer questions about the internal documentation."); // Could add "Be brief with your responses."
         while (true)
         {
             Console.Write("\nUser: ");

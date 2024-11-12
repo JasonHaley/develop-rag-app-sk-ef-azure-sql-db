@@ -13,12 +13,13 @@ public class DbRetrieverPlugin(DbRetriever retriever)
     {
         var searchResults = await retriever.RetrieveLocalAsync(question, 5);
 
-        // TODO: Move to Trace Logging
+        // Only here for demonstration purposes
         var resultsAsJson = JsonSerializer.Serialize(searchResults, new JsonSerializerOptions { WriteIndented = true });
         Console.WriteLine("\n\n---------------------------------------");
         Console.WriteLine("Search string: " + question);
         Console.WriteLine(resultsAsJson);
         Console.WriteLine("---------------------------------------\n\n");
+        //////////////////////////////////////////
 
         var rag = kernel.Plugins["Prompts"];
 
