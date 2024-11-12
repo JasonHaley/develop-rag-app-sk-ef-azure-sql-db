@@ -17,10 +17,10 @@ var builder = Host.CreateApplicationBuilder(args).AddAppSettings();
 builder.Services.AddDbContext<DocDbContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlAzureDB"), o => o.UseVectorSearch()));
 
-builder.Services.AddKernel().AddChatCompletionService(builder.Configuration.GetConnectionString("OpenAI"));
-
 builder.Services.AddScoped<DocumentService>();
 builder.Services.AddScoped<PdfIngestor>();
+
+builder.Services.AddKernel().AddChatCompletionService(builder.Configuration.GetConnectionString("OpenAI"));
 builder.Services.AddScoped<DbRetriever>();
 
 var services = builder.Build().Services;

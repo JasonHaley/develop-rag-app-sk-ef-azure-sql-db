@@ -55,11 +55,6 @@ public class PdfIngestor(DocumentService documentService)
             Console.WriteLine($"Document {docName} already exists.");
             return;
         }
-
-        using var localEmbeddingGenerator = new LocalTextEmbeddingGenerationService();
-
-        var chunkCount = 0;
-        var tokenizer = TiktokenTokenizer.CreateForModel("gpt-4o");
         
         Console.WriteLine($"Generating chunks for {file}...");
         var document = new Db.Document
@@ -67,6 +62,11 @@ public class PdfIngestor(DocumentService documentService)
             Name = docName,
             Path = file
         };
+
+        using var localEmbeddingGenerator = new LocalTextEmbeddingGenerationService();
+
+        var chunkCount = 0;
+        var tokenizer = TiktokenTokenizer.CreateForModel("gpt-4o");
 
         using var pdf = PdfDocument.Open(file);
         foreach (var page in pdf.GetPages())
@@ -82,16 +82,12 @@ public class PdfIngestor(DocumentService documentService)
             for (int i = 0; i < paragraphs.Count; i++)
             {
                 var paragraph = paragraphs[i];
-
-                var textToEmbed = paragraph;
-                var title = $"Document {docName}, Page {page.Number}, Chunk {i}";
-                Console.WriteLine($"Generating {textToEmbed}...");
-
+                
                 var pageChunk = new Db.PageChunk
                 {
-                    Text = textToEmbed,
+                    Text = paragraph,
                     Number = i,
-                    LocalEmbedding = (await localEmbeddingGenerator.GenerateEmbeddingsAsync([textToEmbed])).ToFloatArray()
+                    Embedding = (await localEmbeddingGenerator.GenerateEmbeddingsAsync([paragraph])).ToFloatArray()
                 };
 
                 chunkCount++;

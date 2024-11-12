@@ -2,7 +2,7 @@
 
 In this section we will get the starter code from GitHub and use Entity Framework Core to build out our data models and context.
 
-1. If you haven't already cloned the repository, go to [https://github.com/JasonHaley/develop-rag-app-sk-ef-azure-sql-db]9https://github.com/JasonHaley/develop-rag-app-sk-ef-azure-sql-db), click on the **Code dropdown** button and click **copy url to clipboard** button
+1. If you haven't already cloned the repository, go to the GitHub repo  [develop-rag-app-sk-ef-azure-sql-db](https://github.com/JasonHaley/develop-rag-app-sk-ef-azure-sql-db), click on the **Code dropdown** button and click **copy url to clipboard** button
 
 ![Code button](assets/part1-2-img1.jpg)
 
