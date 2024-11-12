@@ -1,7 +1,7 @@
 
-# Start with the data
+# Part 1: Start with the data
 
-In the part we will create a new Azure SQL database, use Entity Framework Core to create tables and implement the code to ingest our test PDF file.
+In the first part we will create a new Azure SQL database, use Entity Framework Core to create tables and implement the code to ingest our test PDF file.
 
 ## Create the database
 

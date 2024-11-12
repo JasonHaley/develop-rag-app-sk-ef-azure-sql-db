@@ -312,4 +312,4 @@ If you look at the content of the PageChunk table, you'll see something like thi
 
 We now can parse, embed and save a PDF file to the database.
 
-## [Next:  >](part2-1.md)
+## [Next: Create the Retriever >](part2-1.md)
