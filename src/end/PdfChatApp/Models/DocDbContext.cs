@@ -30,8 +30,7 @@ public class DocDbContext(DbContextOptions<DocDbContext> options) : DbContext(op
 
         modelBuilder.Entity<PageChunk>(entity =>
         {
-            entity.Property(p => p.LocalEmbedding).HasColumnType("vector(384)"); // NOTE: array dimensions need to match the embedding dimensions
-            entity.Property(p => p.Ada2Embedding).HasColumnType("vector(1536)"); // NOTE: array dimensions need to match the embedding dimensions
+            entity.Property(p => p.Embedding).HasColumnType("vector(384)"); // NOTE: array dimensions need to match the embedding dimensions
 
             entity.HasKey(e => e.Id).HasName("PK_PageChunk_ID");
             entity.ToTable("PageChunk");

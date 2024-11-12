@@ -7,8 +7,7 @@ public class PageChunk
     public DateTime Created { get; set; } = DateTime.Now;
     public int Number { get; set; }
     public required string Text { get; set; }
-    public float[]? LocalEmbedding { get; set; }
-    public float[]? Ada2Embedding { get; set; }
-
+    public float[]? Embedding { get; set; }
+    
     public virtual Page? Page { get; set; }
 }
