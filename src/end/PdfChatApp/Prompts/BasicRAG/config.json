@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "description": "Basic retrieval agumented generation prompt",
+  "execution_settings": {
+    "default": {
+      "max_tokens": 1000,
+      "temperature": 0.2,
+      "top_p": 0.2
+    }
+  },
+  "input_variables": [
+    {
+      "name": "question",
+      "description": "User's question",
+      "required": true
+    },
+    {
+      "name": "context",
+      "description": "Data provided to the LLM to answer the user's question",
+      "required": true
+    }
+  ]
+}
