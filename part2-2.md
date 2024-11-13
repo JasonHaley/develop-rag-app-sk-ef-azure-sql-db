@@ -82,11 +82,11 @@ public class DbRetrieverPlugin(DbRetriever retriever)
 }
 ```
 
-The is a **Native Function** that Semantic Kernel will use. The `RetrieveAsyn()` method uses the DbRetriever we created earlier to perform a similarity search in Azure SQL. We are currently limiting it to return the top 5 results.
+This is a **Native Function** that Semantic Kernel will use. The `RetrieveAsyn()` method uses the `DbRetriever` we created earlier to perform a similarity search in Azure SQL. We are currently limiting it to return the top 5 results.
 
-I also have left in the debugging code so you can see the search results when the application is running. Feel free to remove that code.
+I also have left in the debugging code so you can see the search results when the application is running. Feel free to remove it.
 
-Next we use a **Semantic Function**, which we need to create now.
+Next we use a **Semantic Function** named **BasicRAG** and pass the user's question and search results to call the LLM. Next we need to create that plugin.
 
 3. In the **PdfChatApp** project folder, create a new folder named **Prompts**. In that folder, create a new folder named **BasicRAG**.
 
@@ -146,6 +146,8 @@ Do not generate answers that don't use the included sources.
 ```
 
 This file contains a prompt template that will be rendered when it is used and passed the arguments in **DbRetrieverPlugin** we created above. This is the prompt that is being augmented from the retrieval for the RAG pattern.
+
+> NOTE: When you are testing the application, you may want to modify this prompt in order to see how the result quality is effected.
 
 ## Implement the ChatBot
 
