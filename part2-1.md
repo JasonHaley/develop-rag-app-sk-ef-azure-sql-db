@@ -8,7 +8,7 @@ This section we will implement code using Entity Framework Core to perform a sim
 
 1. In the **PdfChatApp** project folder, create a new folder named **Retrievers** and add a file named **DbRetriever.cs** to it.
 
-This will hold our logic to search the database.
+This will hold the logic to do a similarity search in the database.
 
 2. Paste the following code into the **DbRetriever.cs** file you just created:
 
@@ -44,7 +44,7 @@ In the code, we first declare a `DocumentInfo` record to use in returning the in
 
 The `DbRetriever` class has one method `RetrieveLocalAsync()` which uses the `LocalTextEmbeddingGenerationService` to get the embeddings for the passed in text, then uses the EF Core plugin mentioned earlier to use the `EF.Functions.VectorDistance()` to order the search results by their similarity score and returns the top k number of items.
 
-Now we need to add Semantic Kernel.
+Now we need to add Azure OpenAI and Semantic Kernel.
 
 ## Create an Azure OpenAI Resource and a Deployment 
 
@@ -61,11 +61,11 @@ In this section you will create an Azure OpenAI resource and deployment for usin
 
 4. Fill out the following items:
 
-* Subscription - select the subscription you want to use
-* Resource Group - select the resource group you used with the Azure SQL resource
-* Region - select the region you chose for the Azure SQL resource
-* Name - provide a unique name for your Azure OpenAI resource
-* Pricing tier - select the Standard S0 pricing tier
+* **Subscription** - select the subscription you want to use
+* **Resource Group** - select the resource group you used with the Azure SQL resource
+* **Region** - select the region you chose for the Azure SQL resource
+* **Name** - provide a unique name for your Azure OpenAI resource
+* **Pricing tier** - select the Standard S0 pricing tier
 
 ![Create OpenAI Page](assets/part2-1-img3.jpg)
 
@@ -81,7 +81,7 @@ This will create the Azure OpenAI resource. Next we need to create a gpt4o deplo
 
 ### Create a GPT4o deployment
 
-1. Once your Azure OpenAI resource is created, click on the Go to resource button
+1. Once your **Azure OpenAI** resource is created, click on the **Go to resource** button
 
 ![Go to resource](assets/part2-1-img5.jpg)
 
@@ -95,7 +95,7 @@ This will open the Azure OpenAI Studio in a new tab. You may need to authenticat
 
 ![Deployment menu](assets/part2-1-img7.jpg)
 
-4. Click the **Deploy Model** button and the **Deploy base model** option
+4. Click the **Deploy Model** dropdown button and the **Deploy base model** option
 
 ![Deployment button](assets/part2-1-img8.jpg)
 
