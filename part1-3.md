@@ -150,7 +150,7 @@ Let's build the rest of this class step by step.
         }
 ```
 
-This opening of the `ProcessSingleFileAsync()` does a little housekeeping by grabbing the name of the file and checking the database if it already exists. When it does, it just exists in order to keep from processing duplicates.
+This opening of the `ProcessSingleFileAsync()` does a little housekeeping by grabbing the name of the file and checking the database if it already exists. If it does exist, it just exists in order to keep from processing duplicates.
 
 4. Now add the following on line 59, replacing the // TODO: Text chunking and embedding
 
@@ -170,7 +170,7 @@ This opening of the `ProcessSingleFileAsync()` does a little housekeeping by gra
         // TODO: Parse and save the document
 ```
 
-This writes out the file name we are getting ready to process and initializes a new Document model for use to populate.
+This writes out the file name we are getting ready to process and initializes a new Document model to populate.
 
 We also are using `LocalTextEmbeddingGenerationService` from the `SmartComponents.LocalEmbeddings.SemanticKernel` nuget package in order to create embeddings on our machine (instead of using OpenAI). 
 
@@ -221,9 +221,11 @@ This code opens a PDF file and loops through all of its pages. Inside of each lo
 
 Once we get the page text, we use `var paragraphs = TextChunker.SplitPlainTextParagraphs([pageText], 500, 100, null, text => tokenizer.CountTokens(text));` to split it into paragraphs, using a max of 500 tokens and an overlap of 100 tokens.
 
-Then we loop through those paragraphs, create PageChunk models and populate with the Text, number of the chunk, Embedding for the paragraph and add that PageChunk to the Pages. Once all paragraphs on a page are added, then the Page is added to the Document.
+> NOTE: You may want to modify these values for smaller and/or larger chunks and overlaps to see how they effect the quality of your retriever later.
 
-Once all the pages have been processed, the Document is saved to the database.
+Then we loop through those paragraphs, create `PageChunk` models and populate with the paragraph text, number of the chunk, embedding for the paragraph and add that `PageChunk` to the `Pages`. Once all paragraphs of a page are added, the Page is added to the `Document`.
+
+Once all the pages have been processed, the `Document` is saved to the database.
 
 When all is done, it writes out the number of chunks that were generated.
 
