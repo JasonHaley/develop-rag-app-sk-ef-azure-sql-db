@@ -151,9 +151,9 @@ This file contains a prompt template that will be rendered when it is used and p
 
 ## Implement the ChatBot
 
-In this section we will implement the ChatBot and connect it to the Program.cs file so the logic will be called when the application runs.
+In this section we will implement the ChatBot and connect it to the `Program.cs` file so the logic will be called when the application runs.
 
-1. In the **ChatBot.cs** file, replace the text with the following code:
+1. In the **ChatBot.cs** file, replace the all the contents with the following code:
 
 ```C#
 using Microsoft.SemanticKernel.ChatCompletion;
@@ -203,13 +203,13 @@ public class ChatBot(Kernel kernel, IChatCompletionService chatCompletionService
 }
 ```
 
-This code takes in a Kernel and IChatCompletionService for interacting with OpenAI and the plugins we've created.
+This code takes in a `Kernel` and `IChatCompletionService` for interacting with OpenAI and the plugins we've created.
 
 The `kernel.ImportPluginFromPromptDirectory("Prompts");` line imports the semantic function we created to call the LLM with the augmented prompt.
 
 The `kernel.ImportPluginFromType<DbRetrieverPlugin>();` imports the **DbRetrieverPlugin** so it is available for the LLLM to call.
 
-The following code block enables the AutoInvokeKernelFunctions so the LLM can make function calls for us as well as turns the temperature down to be less creative and provides a 1000 tokens for the maximum size:
+The following code block sets the `ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions` so the LLM can make function calls for us. It also turns the temperature down to be less creative and provides a 1,000 tokens for the maximum size:
 
 ```C#
         OpenAIPromptExecutionSettings openAIPromptExecutionSettings = new()
@@ -220,7 +220,9 @@ The following code block enables the AutoInvokeKernelFunctions so the LLM can ma
         };
 ```
 
-Next we use `ChatHistory` to keep track of the conversation - this is a sort of short term memory for the chatbot. In the creation of the ChatHistory we set the initial System prompt top help provide a persona `"You are a chatbot that can answer questions about the internal documentation."`
+Next we use `ChatHistory` to keep track of the conversation - this is a sort of short term memory for the chatbot. In the creation of the `ChatHistory` we set the initial System prompt to help provide a persona `"You are a chatbot that can answer questions about the internal documentation."`
+
+> NOTE: You may want to add "Be brief with your responses." to the end of the system prompt to keep it short.
 
 The while loop takes the user's input, passes it to the `chatCompletionService.GetStreamingChatMessageContentsAsync()` and writes out the responses as they stream back.
 
@@ -228,7 +230,7 @@ Now we need to connect the **ChatBot** to the **Program.cs** file
 
 ## Last item, call the ChatBot
 
-1. In Program.cs, replace lines 49 and 50 with the following code:
+1. In `Program.cs`, replace lines 49 and 50 with the following code:
 
 ```C#
             var chatCompletionService = services.GetRequiredService<IChatCompletionService>();
@@ -239,7 +241,7 @@ Now we need to connect the **ChatBot** to the **Program.cs** file
 
 This code retrieves the dependencies the **ChatBot** needs from the DI container, creates the ChatBot and starts it.
 
-2. Now add the following using statements to the top of the **Program.cs** file:
+2. Now add the additional using statements to the top of the **Program.cs** file:
 
 ```C#
 using Microsoft.SemanticKernel.ChatCompletion;
@@ -248,7 +250,7 @@ using PdfChatApp;
 using PdfChatApp.Retrievers;
 ```
 
-3. Open the **PdfChatApp.csproj**, comment out the `<StartArguments>-f assets\semantic-kernel.pdf</StartArguments>` line we uncommented earlier.
+3. Open the **PdfChatApp.csproj**, comment out the `<StartArguments>-f assets\semantic-kernel.pdf</StartArguments>` line we uncommented earlier so it will run in chatbot mode.
 
 4. Add the following in the bottom ItemGroup:
 
