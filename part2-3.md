@@ -2,7 +2,7 @@
 
 If you made it this far - Congratulations!
 
-Now is the fun part, we get to ask the PDF questions and see how it does at answering.
+Now is the fun part, we get to ask the PDF questions and see how it does at answering. 
 
 If you are not already running the application, run the following:
 
@@ -10,7 +10,7 @@ If you are not already running the application, run the following:
 dotnet run
 ```
 
-You should see output like this:
+You should see a prompt in the output like this:
 
 ```TEXT
 User:
@@ -98,6 +98,8 @@ To get started with Semantic Kernel, you can build your first AI agent using Pyt
 
 For Python or C# developers, there are notebooks available that provide step-by-step guides to help you get started quickly.
 ```
+
+> NOTE: Don't be disappointed when you trip it up - this is just a beginning RAG application.
 
 ## [Next: Summary >](summary.md)
 
