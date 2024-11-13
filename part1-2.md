@@ -12,14 +12,14 @@ In this section we will get the starter code from GitHub and use Entity Framewor
 git clone https://github.com/JasonHaley/develop-rag-app-sk-ef-azure-sql-db.git
 ```
 
-3. Once the code has downloaded run the following code in order open it in VS Code:
+3. Once the code has downloaded run the following, in order open it in VS Code:
 
 ```PowerShell
 cd develop-rag-app-sk-ef-azure-sql-db
 code .
 ```
 
-This should open VS Code with the directory loaded. Look for the **/src/start** folder.
+This will open VS Code with the directory loaded. Look for the **/src/start** folder.
 
 ![Start Folder](assets/part1-2-img2.jpg)
 
@@ -28,11 +28,12 @@ This should open VS Code with the directory loaded. Look for the **/src/start** 
 In order to keep this lab focused on SQL Azure, Entity Framework and Semantic Kernel, the project already provides some none related but relevant things - let's look at those first. **Feel free to skip this!**
 
 The **assets** folder - provides a couple of PDFs you can use for the sample data
+
 The **Configuration** folder provides some helpers.
 * `CommandOptions.cs` - provides basic command logic to use the **System.CommandLine** package for handling command line arguments.
 * `ConfigurationExtentions.cs` - provides configuration logic for loading appsettings.json and a couple of helpers that simplify using a ConnectionString to load LLM settings for OpenAI or AzureOpenAI.
 * `Extensions/ReadOnlyMemoryExtensions.cs` - has an extension method for converting a `ReadOnlyMemory<float>` to a `float[]` which will be used when saving embeddings.
-* **Models** folder has three classes we will use for the object model representing a Document, Page and PageChunk. More on these soon.
+* **Models** folder has three classes we will use for the object model representing a `Document`, `Page` and `PageChunk`. More on these soon.
 * **ChatBot.cs** - is a starter class which will end up containing the messaging loop when we are done.
 * **PdfChatApp.csproj** - This contains the package references as you would expect, however there are a few other things I want to highlight:
 
@@ -73,11 +74,11 @@ The bottom **ItemGroup**:
 </ItemGroup>
 ```
 
-You probably know what these are, but in case you don't - this is the information that lets dotnet know it needs to treat the copy sample pdf files and the appsettings files to the binary directory. Otherwise the files won't be found at runtime.
+You probably know what these are, but in case you don't - this is the information that lets .NET know it needs to copy the sample pdf files and the appsettings files when it compiles. Otherwise the files won't be found at runtime.
 
 * `Program.cs` is the starting point with // TODO: items for placeholders.
 
-The application is a console application that will run as a chat bot - if you don't pass any arguments on the command line. The argument options are:
+The application is a console application that will run as a chat bot - if you don't pass any arguments on the command line. Optionally, argument options are used to process files:
 
 | Argument       | Purpose        |
 |----------------|----------------|
@@ -91,7 +92,7 @@ The application is a console application that will run as a chat bot - if you do
 
 By now the Azure SQL database should be created, let's configure the code to use it.
 
-1. In the PdfChatApp folder, create a new file named **appsettings.Local.json** and past the following in it and save:
+1. In the PdfChatApp folder, create a new file named **appsettings.Local.json** and paste the following in it and save:
 
 ```JSON  
 {
@@ -162,9 +163,8 @@ public class DocDbContext(DbContextOptions<DocDbContext> options) : DbContext(op
 
         modelBuilder.Entity<PageChunk>(entity =>
         {
-            entity.Property(p => p.LocalEmbedding).HasColumnType("vector(384)"); // NOTE: array dimensions need to match the embedding dimensions
-            entity.Property(p => p.Ada2Embedding).HasColumnType("vector(1536)"); // NOTE: array dimensions need to match the embedding dimensions
-
+            entity.Property(p => p.Embedding).HasColumnType("vector(384)"); // NOTE: array dimensions need to match the embedding dimensions
+            
             entity.HasKey(e => e.Id).HasName("PK_PageChunk_ID");
             entity.ToTable("PageChunk");
 

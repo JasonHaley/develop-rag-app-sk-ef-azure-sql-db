@@ -28,15 +28,16 @@ This lab starts with creating and configuring an Azure SQL database. You then ge
 * Azure Subscription - [you can create a Free account](https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account?icid=azurefreeaccount&azure-portal=true) if you don't have one.
     * Ability to create a new Azure SQL Server and DB
     * Ability to create Azure Open AI resource and deployments
+* Git
 * VS Code (Visual Studio will work but right now the steps are written for VS Code)
 * [Entity Framework Core .NET Core CLI tools](https://learn.microsoft.com/en-us/ef/core/cli/dotnet#installing-the-tools)
 * SQL Server Management Studio
 
 ## Learning Objectives
 
-1. Create an Azure SQL DB and configure the application to use Vector search using Entity Framework
+1. Create an Azure SQL DB and configure the application to use Vector search using Entity Framework Core
 2. Implement code to ingest PDF's into the Azure SQL DB along with their vector embeddings
 3. Configure and create Semantic Kernel plugins to search the database
-4. Use all the above to build a chat bot that will answer questions from PDF contents
+4. Use all the above to build a chat bot to answer questions from PDF contents
 
 ## [Next: Get started with the database and test data >](part1-1.md)

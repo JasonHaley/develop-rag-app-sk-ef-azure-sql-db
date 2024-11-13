@@ -1,7 +1,7 @@
 
 # Part 1: Start with the data
 
-In the first part we will create a new Azure SQL database, use Entity Framework Core to create tables and implement the code to ingest our test PDF file.
+In the first part we will create a new Azure SQL database, use Entity Framework Core migrations to create tables and implement the code to ingest our test PDF file.
 
 ## Create the database
 
@@ -25,11 +25,11 @@ This will show you a few deployment options.
 
 We can now create the Azure SQL Database and Server
 
-6. Select the subscription you want to use and create a new resource group named **rg-azuresql-db**
+6. Select the subscription you want to use and create a new resource group named **rg-azuresql-lab**
 
 ![Create Resouce Group](assets/part1-img4.jpg)
 
-7. Give you database a unique name (I used **db-sqlazure-lab** for mine)
+7. Give the database a unique name (I used **db-sqlazure-lab** for mine)
 8. Next click the **Create new** link to create a new Azure SQL database server
 9. On the Create SQL Database Server page, fill in the following:
 * **Server name**
@@ -59,7 +59,7 @@ I'm using the East US 2 datacenter and it shows I'll be chared <$5.00 for a mont
 
 ![Estimate](assets/part1-img7.jpg)
 
-15. Click the **Create** button to finally create the database and server.
+15. Click the **Create** button to create the database and server.
 
 This will take a few minutes, so let's move on to the code.
 
