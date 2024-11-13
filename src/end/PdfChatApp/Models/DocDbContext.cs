@@ -7,10 +7,8 @@ public class DocDbContext(DbContextOptions<DocDbContext> options) : DbContext(op
     public DbSet<Page> Pages { get; set; }
     public DbSet<PageChunk> PageChunks { get; set; }
 
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-
         modelBuilder.Entity<Document>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK_Document_ID");

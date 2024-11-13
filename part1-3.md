@@ -1,6 +1,6 @@
 ## Save the PDF and Embeddings to the Azure SQL Database
 
-In this section we will create logic to save to the database tables we just created, some utility code to parse a PDF file using **PdfPig**, use a local embeddings model to generate text embedding for parts of the PDF file and then save all that to the database. By the end of this section, we will be able to run the application to parse, embed and save a PDF file.
+In this section we will create the logic to save to the database tables we just created, some utility code to parse a PDF file using **PdfPig**, use a local embeddings model to generate text embedding for parts of the PDF file and then save all that to the database. By the end of this section, we will be able to run the application to parse, embed and save a PDF file.
 
 Often times when using EF Core you will use a repository pattern class to wrap all the database logic. We will be doing something similar, I am just calling it **DocumentService**.
 
@@ -57,13 +57,13 @@ public class DocumentService(DocDbContext dbContext)
 
 As you can see with the above logic, it is just normal EF Core logic - nothing special here. Now we have the logic to do everything except parse and split the PDF file. That is next.
 
-## Parsing, Embedding and Saving the PDF in Azure SQL
+## Parsing, Creating the Embeddings and Saving the PDF in Azure SQL
 
-We are going to use a package named **PdfPig** to read the PDF file and return the pages and text for us. Since we are going to be creating embeddings for this file we need to break the pieces up into chunks of text so those pieces are not too large. Sometimes this process is called **ingesting data**. Let's create a PdfIngestor.
+We are going to use a package named **PdfPig** to read the PDF file and return the pages and text for us. Since we are going to be creating embeddings for this file we need to break the pieces up into chunks of text so those pieces are not too large. Sometimes this process is called **ingesting or chunking the data**. Let's create a PdfIngestor.
 
 1. In the **PdfChatApp** project folder, create a new folder named **Ingestors** and add a file named **PdfIngestor.cs** to it.
 
-First lets add the utility methods that aren't all that exiting. 
+First lets add the utility methods that aren't all that exciting. 
 
 2. Add the following to the **PdfIngestor.cs** file you just created:
 

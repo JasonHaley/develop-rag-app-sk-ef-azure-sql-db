@@ -174,7 +174,7 @@ public class DocDbContext(DbContextOptions<DocDbContext> options) : DbContext(op
 }
 ```
 
-This is going to be our DbContext for interacting with the database. You can see are going to have three tables:
+This is going to be our DbContext for interacting with the database. You can there will be three tables:
 
 * Documents
 * Pages
