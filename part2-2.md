@@ -1,8 +1,8 @@
 ## Setup Semantic Kernel
 
-In this section we will configure Semantic Kernel and create a couple of plugins to use the **DbRetriever** we built in the last section.
+In this section we will configure Semantic Kernel and create a couple of plugins to use the **DbRetriever** we built earlier.
 
-1. In **Program.cs** replace the // TODO: statements on lines 19 and 20
+1. In **Program.cs** replace the // TODO: statements on lines 19 and 20 with the following lines of code:
 
 ```C#
 builder.Services.AddKernel().AddChatCompletionService(builder.Configuration.GetConnectionString("OpenAI"));
@@ -17,11 +17,15 @@ This adds Semantic Kernel to the dependency injection system and adds an Azure O
 , "OpenAI": "Source=AzureOpenAI;Key=[api key];ChatDeploymentName=gpt-4o;Endpoint=https://[resouce name].openai.azure.com/"
 ```
 
+> NOTE: If you want to use OpenAI instead of Azure OpenAI, you will need to use a connection string like this:  
+>
+> ,"OpenAI": "Source=OpenAI;ChatModelId=gpt-4o-2024-08-06;ApiKey=[open ai api key]"
+
 At this point, your Azure OpenAI resource should be created.
 
 3. Go back to the **Azure Portal** and find your **Azure OpenAI** resource in the **Azure OpenAI Studio** tab
 
-4. Click the Home menu item to see the configuration information. You will the highlighted items from that page:
+4. Click the Home menu item to see the configuration information. You will need the highlighted items from that page:
 
 ![Resource Info](assets/part2-1-img11.jpg)
 
@@ -34,7 +38,7 @@ At this point, your Azure OpenAI resource should be created.
 
 Next we will create a couple of plugins that will help Semantic Kernel perform the retrieval for us.
 
-## Create a Plugin to Peform Retrieval for Us
+## Create a Plugin to Perform Retrieval
 
 1. In the **PdfChatApp** project folder, create a new folder named **Plugins** and add a file named **DbRetrieverPlugin.cs** to it.
 
